@@ -11,13 +11,15 @@ const PORT = 3333;
 Category.hasMany(Product);
 
 const app = express();
-
+app.use(cors({
+    origin: '*'
+}));
 
 app.use('/categories', categories);
 app.use('/products', products);
 
 
-app.use(cors());
+
 app.use(express.json());
 
 const start = async () =>{
