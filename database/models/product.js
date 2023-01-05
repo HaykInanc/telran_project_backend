@@ -13,6 +13,7 @@ const Product = sequelize.define("product", {
     price: DataTypes.INTEGER,
     discont_price: DataTypes.INTEGER,
     description: DataTypes.TEXT,
+    image: DataTypes.TEXT,
 });
 
 

@@ -11,6 +11,7 @@ const PORT = 3333;
 Category.hasMany(Product);
 
 const app = express();
+app.use(express.static('public'))
 app.use(cors({
     origin: '*'
 }));

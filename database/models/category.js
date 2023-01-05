@@ -9,7 +9,8 @@ const Category = sequelize.define("category", {
         autoIncrement: true,
         primaryKey: true
     },
-    title: DataTypes.TEXT
+    title: DataTypes.TEXT,
+    image: DataTypes.TEXT,
 });
 
 
