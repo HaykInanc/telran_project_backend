@@ -24,13 +24,17 @@ router.get('/:id', async (req, res) =>{
         return  
     }
     const all = await Product.findAll({where: {categoryId: +id}});
+    const category = await Category.findOne({where: {id: +id}});
 
     if(all.length === 0){
         res.json({status: 'ERR', message: 'empty category'});
         return
     }
     
-    res.json(all);
+    res.json({
+        category,
+        data: all
+    });
 })
 
 module.exports = router;

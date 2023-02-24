@@ -1,6 +1,8 @@
 const { request } = require('express');
 const express = require('express');
 const categories = require('./routes/categories');
+const sale = require('./routes/sale');
+const order = require('./routes/order');
 const products = require('./routes/products');
 const sequelize = require('./database/database');
 const cors = require('cors')
@@ -16,8 +18,12 @@ app.use(cors({
     origin: '*'
 }));
 
+app.use(express.urlencoded());
 app.use('/categories', categories);
 app.use('/products', products);
+app.use('/sale', sale);
+app.use('/order', order);
+
 
 
 
