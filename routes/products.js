@@ -1,6 +1,6 @@
-const { request } = require('express');
+
 const express = require('express');
-const Product = require('../database/models/product');
+const products  = require('../jsons/products');
 
 const router = express.Router();
 
@@ -9,7 +9,8 @@ const router = express.Router();
 router.get('/all', (req, res) =>{
     
     async function all(){
-        const all = await Product.findAll();
+        console.log(products);
+        const all = products;
         console.log(all);
         res.json(all);
     }
@@ -24,7 +25,7 @@ router.get('/:id', async (req, res) =>{
         res.json({status: 'ERR', message: 'wrong id'}); 
         return  
     }
-    const all = await Product.findAll({where: {id: +id}});
+    const all = products.filter(item => item.id === +id);
 
     if(all.length === 0){
         res.json({status: 'ERR', message: 'product not found'});
@@ -35,10 +36,5 @@ router.get('/:id', async (req, res) =>{
 })
 
 
-router.get('/add/:title/:price/:discont_price/:description', (req, res) =>{
-    const {title, price, discont_price, description} = req.params;
-    Product.create({title, price, discont_price, description, categoryId: 1});
-    res.json(`добавлено`);
-})
 
 module.exports = router;
